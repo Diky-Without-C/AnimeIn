@@ -14,23 +14,24 @@ export default function HomePage() {
   const [isLoading, setLoading] = useState(false);
   const [currentTime, setTime] = useState("");
 
+  const getData = async () => {
+    setLoading(true);
+    const anime = await getAnimeData({
+      endpoints: "recommendations/anime",
+    });
+
+    const data = await getNestedData({
+      data: anime.data,
+      property: "entry",
+    });
+
+    randomize(data);
+
+    setAnime(removeDuplicates(data).slice(0, 20));
+    setLoading(false);
+  };
+
   useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      const anime = await getAnimeData({
-        endpoints: "recommendations/anime",
-      });
-
-      const data = await getNestedData({
-        data: anime.data,
-        property: "entry",
-      });
-
-      randomize(data);
-
-      setAnime(removeDuplicates(data).slice(0, 20));
-      setLoading(false);
-    };
     getData();
     setTime(getCurrentTime());
   }, []);

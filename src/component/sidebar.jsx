@@ -1,38 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import Icon from "./icon";
 
-function NavList({ items, isVisible }) {
-  return (
-    <ul>
-      {items.map((item) => (
-        <NavListItem key={item.name} {...{ item, isVisible }} />
-      ))}
-    </ul>
-  );
-}
-
-function NavListItem({ item, isVisible }) {
-  const { pathname } = useLocation();
-  return (
-    <Link to={item.link}>
-      <li
-        className={`mb-1 flex items-center rounded-md px-2 font-bold transition-all duration-500 hover:bg-gray-300 hover:duration-0 ${
-          isVisible ? "py-4" : "py-5"
-        } ${pathname == item.link && "bg-gray-300"}`}
-      >
-        <span
-          className={`mx-4 transform text-2xl transition-all ${
-            isVisible ? "scale-1" : "scale-125"
-          }`}
-        >
-          <Icon name={item.icon} />
-        </span>
-        <span className="whitespace-nowrap">{isVisible && item.name}</span>
-      </li>
-    </Link>
-  );
-}
-
 export default function Sidebar({ isOpen }) {
   const data = [
     {
@@ -72,5 +40,37 @@ export default function Sidebar({ isOpen }) {
         </button>
       </div>
     </aside>
+  );
+}
+
+function NavList({ items, isVisible }) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <NavListItem key={item.name} {...{ item, isVisible }} />
+      ))}
+    </ul>
+  );
+}
+
+function NavListItem({ item, isVisible }) {
+  const { pathname } = useLocation();
+  return (
+    <Link to={item.link}>
+      <li
+        className={`mb-1 flex items-center rounded-md px-2 font-bold transition-all duration-500 hover:bg-gray-300 hover:duration-0 ${
+          isVisible ? "py-4" : "py-5"
+        } ${pathname == item.link && "bg-gray-300"}`}
+      >
+        <span
+          className={`mx-4 transform text-2xl transition-all ${
+            isVisible ? "scale-1" : "scale-125"
+          }`}
+        >
+          <Icon name={item.icon} />
+        </span>
+        <span className="whitespace-nowrap">{isVisible && item.name}</span>
+      </li>
+    </Link>
   );
 }

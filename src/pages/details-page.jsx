@@ -7,21 +7,22 @@ import Image from "../component/image";
 export default function DetailsPage() {
   const [anime, setAnime] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const contentRef = useRef(null);
   const { mal_id } = useParams();
+  const contentRef = useRef(null);
   const scrollTop = useScrollTop(contentRef);
   const placeholder = !anime.images || isLoading;
 
-  useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      const anime = await getAnimeData({
-        endpoints: `anime/${mal_id}/full`,
-      });
+  const getData = async () => {
+    setLoading(true);
+    const anime = await getAnimeData({
+      endpoints: `anime/${mal_id}/full`,
+    });
 
-      setAnime(anime.data);
-      setLoading(false);
-    };
+    setAnime(anime.data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
     getData();
     scrollTop();
   }, []);
