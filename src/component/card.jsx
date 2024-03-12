@@ -91,13 +91,17 @@ function RattingSection({ anime, placeholder }) {
         {stars.map((star, index) => {
           return (
             <span key={index} className="-mr-1 pt-1">
-              <Icon
-                name="star"
-                color="star"
-                size="medium"
-                fill={`${star != 0}`}
-                mask={`${star % 1 != 0}`}
-              />
+              {star % 1 == 0 ? (
+                <Icon name="star" color="star" size="medium" fill={star != 0} />
+              ) : (
+                <Icon
+                  name="star"
+                  color="star"
+                  size="medium"
+                  fill={`${star != 0}`}
+                  mask
+                />
+              )}
             </span>
           );
         })}
