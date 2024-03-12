@@ -25,7 +25,12 @@ export function capitalize(string) {
 export function useScrollTop(contentRef) {
   function scrollTop() {
     if (contentRef.current) {
-      contentRef.current.scrollTo({ top: 0, behavior: "smooth" });
+      if (contentRef.current.parentElement) {
+        contentRef.current.parentElement.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
     }
   }
 

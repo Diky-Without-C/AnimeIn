@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getAnimeData } from "../services/api";
 import { addComas, useScrollTop } from "../services/utilities";
 import Image from "../component/image";
 
-export default function DetailsPage({ contentRef }) {
+export default function DetailsPage() {
   const [anime, setAnime] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const contentRef = useRef(null);
   const { mal_id } = useParams();
   const scrollTop = useScrollTop(contentRef);
   const placeholder = !anime.images || isLoading;
@@ -26,7 +27,7 @@ export default function DetailsPage({ contentRef }) {
   }, []);
 
   return (
-    <main className="bg-gray-100 p-5">
+    <main className="bg-gray-100 p-5" ref={contentRef}>
       <Header {...{ anime, placeholder }} />
       <div className="flex h-[27rem] w-full flex-col items-center gap-2 lg:flex-row">
         <div className="flex h-full w-3/12 items-center justify-center bg-gray-200">

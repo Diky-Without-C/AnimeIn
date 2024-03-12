@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getAnimeData, removeDuplicates } from "../services/api";
 import { capitalize } from "../services/utilities";
 import ListAnime from "../component/list-anime";
@@ -6,13 +6,14 @@ import Pagination from "../component/pagination";
 import Dropdown from "../component/dropdown";
 import Title from "../component/title";
 
-export default function SeasonPage({ contentRef }) {
+export default function SeasonPage() {
   const [anime, setAnime] = useState([]);
   const [page, setpage] = useState(1);
   const [lastpage, setlastpage] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const currentSeason = anime?.[0]?.season || "Anime";
   const currentYear = new Date().getFullYear();
+  const contentRef = useRef(null);
 
   const dropdownMenu = [
     {
@@ -37,7 +38,7 @@ export default function SeasonPage({ contentRef }) {
   }, [page]);
 
   return (
-    <>
+    <div ref={contentRef}>
       <Title text={`${capitalize(currentSeason)} ${currentYear}`}>
         <Dropdown list={dropdownMenu} />
       </Title>
@@ -45,6 +46,6 @@ export default function SeasonPage({ contentRef }) {
       <div className="flex justify-center">
         <Pagination {...{ lastpage, setpage, page, contentRef }} />
       </div>
-    </>
+    </div>
   );
 }

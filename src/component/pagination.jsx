@@ -2,17 +2,6 @@ import { useEffect } from "react";
 import { useScrollTop } from "../services/utilities";
 import Icon from "./icon";
 
-function Button({ onClick, children }) {
-  return (
-    <button
-      className="h-full w-10 rounded-lg bg-gray-300 p-2 hover:bg-gray-400"
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-}
-
 export default function Pagination({ lastpage, setpage, page, contentRef }) {
   const placeholder = !lastpage;
   const scrollTop = useScrollTop(contentRef);
@@ -54,5 +43,16 @@ export default function Pagination({ lastpage, setpage, page, contentRef }) {
         <Icon name="arrowRight" />
       </Button>
     </div>
+  );
+}
+
+function Button({ onClick, children }) {
+  return (
+    <button
+      className="h-full w-10 rounded-lg bg-gray-300 p-2 hover:bg-gray-400"
+      onClick={onClick}
+    >
+      {children}
+    </button>
   );
 }

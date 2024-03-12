@@ -1,15 +1,16 @@
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { getAnimeData, removeDuplicates } from "../services/api";
 import ListAnime from "../component/list-anime";
 import Pagination from "../component/pagination";
 
-export default function SearchPage({ contentRef }) {
+export default function SearchPage() {
   const [anime, setAnime] = useState([]);
   const [page, setpage] = useState(1);
   const [lastpage, setlastpage] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const { query } = useParams();
+  const contentRef = useRef(null);
 
   const getData = async () => {
     setLoading(true);

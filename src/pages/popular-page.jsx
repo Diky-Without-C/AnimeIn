@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getAnimeData, removeDuplicates } from "../services/api";
 import ListAnime from "../component/list-anime";
 import Pagination from "../component/pagination";
 import Dropdown from "../component/dropdown";
 import Title from "../component/title";
 
-export default function PopularPage({ contentRef }) {
+export default function PopularPage() {
   const [anime, setAnime] = useState([]);
   const [page, setpage] = useState(1);
   const [lastpage, setlastpage] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const contentRef = useRef(null);
 
   const dropdownMenu = [
     {
@@ -34,7 +35,7 @@ export default function PopularPage({ contentRef }) {
   }, [page]);
 
   return (
-    <>
+    <div ref={contentRef}>
       <Title text="Top Anime">
         <Dropdown list={dropdownMenu} />
       </Title>
@@ -42,6 +43,6 @@ export default function PopularPage({ contentRef }) {
       <div className="flex justify-center">
         <Pagination {...{ lastpage, setpage, page, contentRef }} />
       </div>
-    </>
+    </div>
   );
 }

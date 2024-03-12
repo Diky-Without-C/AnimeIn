@@ -74,7 +74,7 @@ export default function Icon({
           key={index}
           strokeLinecap="round"
           strokeLinejoin="round"
-          fill={mask == "true" && `url(#half)`}
+          fill={mask && `url(#half)`}
           d={data}
         />
       ))}
