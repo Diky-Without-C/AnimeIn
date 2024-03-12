@@ -71,7 +71,7 @@ export default function LoginPage() {
         </div>
         <div className="mt-6 flex items-center justify-center">
           <Link
-            to="/register"
+            to="/AnimeIn/register"
             className="text-xs font-bold text-blue-500 hover:text-blue-700"
           >
             <span className="ml-2">Don't have an account?</span>

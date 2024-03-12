@@ -79,7 +79,7 @@ export default function RegisterPage() {
         </div>
         <div className="mt-6 flex items-center justify-center">
           <Link
-            to="/login"
+            to="/AnimeIn/login"
             className="text-xs font-bold text-blue-500 hover:text-blue-700"
           >
             <span className="ml-2">Alredy have an account?</span>

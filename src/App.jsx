@@ -24,21 +24,24 @@ export default function App() {
             ref={contentRef}
           >
             <Routes>
-              <Route path="/" element={<HomePage {...{ contentRef }} />} />
               <Route
-                path="/popular"
+                path="/AnimeIn/"
+                element={<HomePage {...{ contentRef }} />}
+              />
+              <Route
+                path="/AnimeIn/popular"
                 element={<PopularPage {...{ contentRef }} />}
               />
               <Route
-                path="/season"
+                path="?AnimeIn/season"
                 element={<SeasonPage {...{ contentRef }} />}
               />
               <Route
-                path="/search/:query"
+                path="/AnimeIn/search/:query"
                 element={<SearchPage {...{ contentRef }} />}
               />
               <Route
-                path="/anime/:mal_id"
+                path="/AnimeIn/anime/:mal_id"
                 element={<DetailsPage {...{ contentRef }} />}
               />
               <Route path="*" element={<NotFound />} />

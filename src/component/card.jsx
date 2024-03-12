@@ -7,7 +7,7 @@ import Icon from "./icon";
 export default function Card({ anime, placeholder, complete }) {
   return (
     <Link
-      to={anime && `/anime/${anime.mal_id}`}
+      to={anime && `/AnimeIn/anime/${anime.mal_id}`}
       className={placeholder ? "" : "transition-all hover:scale-[1.025]"}
     >
       <div

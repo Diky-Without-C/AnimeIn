@@ -11,8 +11,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Router>
       <Routes>
         <Route path="*" element={<App />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/AnimeIn/login" element={<LoginPage />} />
+        <Route path="/AnimeIn/register" element={<Register />} />
       </Routes>
     </Router>
   </React.StrictMode>,

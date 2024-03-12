@@ -38,22 +38,22 @@ export default function Sidebar({ isOpen }) {
     {
       name: "Home",
       icon: "home",
-      link: "/",
+      link: "/AnimeIn/",
     },
     {
       name: "Popular",
       icon: "fire",
-      link: "/popular",
+      link: "/AnimeIn/popular",
     },
     {
       name: "Season",
       icon: "tv",
-      link: "/season",
+      link: "/AnimeIn/season",
     },
     {
       name: "date",
       icon: "calendar",
-      link: "/date",
+      link: "/AnimeIn/date",
     },
   ];
 
@@ -68,7 +68,7 @@ export default function Sidebar({ isOpen }) {
       </div>
       <div className="w-full border-gray-300 p-2">
         <button className="w-full rounded bg-blue-600 p-3 text-center font-bold text-white">
-          <Link to="/login">Login</Link>
+          <Link to="/AnimeIn/login">Login</Link>
         </button>
       </div>
     </aside>
