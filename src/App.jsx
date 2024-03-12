@@ -33,7 +33,7 @@ export default function App() {
                 element={<PopularPage {...{ contentRef }} />}
               />
               <Route
-                path="?AnimeIn/season"
+                path="/AnimeIn/season"
                 element={<SeasonPage {...{ contentRef }} />}
               />
               <Route
