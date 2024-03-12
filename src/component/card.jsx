@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { addComas } from "../services/utilities";
+import { addComas, ratingToStar } from "../services/utilities";
 import Image from "./image";
 import Badge from "./badge";
 import Icon from "./icon";
@@ -60,28 +60,7 @@ function Title({ anime, placeholder }) {
 }
 
 function RattingSection({ anime, placeholder }) {
-  function splitNumber(number) {
-    const resultArray = [1, 0, 0, 0, 0];
-
-    if (number < 1) {
-      resultArray[0] = number;
-    } else {
-      const integerPart = Math.floor(number);
-      const fraction = number - integerPart;
-
-      for (let i = 0; i < integerPart; i++) {
-        resultArray[i] = 1;
-      }
-
-      if (fraction !== 0) {
-        resultArray[integerPart] = fraction;
-      }
-    }
-
-    return resultArray;
-  }
-
-  const stars = !placeholder && splitNumber(anime.score / 2);
+  const stars = !placeholder && ratingToStar(anime.score / 2);
 
   return placeholder ? (
     <div className="placeholder h-1/6 rounded bg-gray-300"></div>
@@ -94,13 +73,7 @@ function RattingSection({ anime, placeholder }) {
               {star % 1 == 0 ? (
                 <Icon name="star" color="star" size="medium" fill={star != 0} />
               ) : (
-                <Icon
-                  name="star"
-                  color="star"
-                  size="medium"
-                  fill={`${star != 0}`}
-                  mask
-                />
+                <Icon name="star" color="star" size="medium" fill mask />
               )}
             </span>
           );

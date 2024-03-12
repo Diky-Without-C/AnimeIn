@@ -40,3 +40,24 @@ export function useScrollTop(contentRef) {
 
   return scrollTop;
 }
+
+export function ratingToStar(number) {
+  const resultArray = [1, 0, 0, 0, 0];
+
+  if (number < 1) {
+    resultArray[0] = number;
+  } else {
+    const integerPart = Math.floor(number);
+    const fraction = number - integerPart;
+
+    for (let i = 0; i < integerPart; i++) {
+      resultArray[i] = 1;
+    }
+
+    if (fraction !== 0) {
+      resultArray[integerPart] = fraction;
+    }
+  }
+
+  return resultArray;
+}
