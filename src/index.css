@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes placeHolderShimmer {
+  0% {
+    left: -45%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.placeholder {
+  position: relative;
+  overflow: hidden;
+}
+
+.placeholder::after {
+  content: "";
+  height: 100%;
+  width: 45%;
+  opacity: 0.5;
+  position: absolute;
+  background-size: 100% 100%;
+  animation: placeHolderShimmer 1.25s infinite linear;
+  background: linear-gradient(
+    to right,
+    rgba(251, 251, 251, 0.05),
+    rgba(251, 251, 251, 0.3),
+    rgba(251, 251, 251, 0.3),
+    rgba(251, 251, 251, 0.5),
+    rgba(251, 251, 251, 0.05)
+  );
+}
