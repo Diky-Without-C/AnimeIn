@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export function getCurrentTime() {
   const date = new Date();
@@ -39,6 +39,19 @@ export function useScrollTop(contentRef) {
   }, [contentRef]);
 
   return scrollTop;
+}
+
+export function useClickOutside(ref, setClickOtside) {
+  const handleClickOutside = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setClickOtside(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
 }
 
 export function ratingToStar(number) {

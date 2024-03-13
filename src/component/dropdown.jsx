@@ -1,26 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import Icon from "./icon";
+import { useClickOutside } from "../services/utilities";
 
 export default function Dropdown({ list }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    useClickOutside(dropdownRef, setIsOpen);
+  }, []);
 
   return (
     <div className="relative flex w-auto flex-row-reverse" ref={dropdownRef}>
