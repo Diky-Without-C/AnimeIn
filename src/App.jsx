@@ -13,7 +13,7 @@ export default function App() {
         <Sidebar {...{ isOpen, setIsOpen }} />
         <div
           id="main-content"
-          className="h-[calc(100vh-4.5rem)] w-full overflow-x-hidden overflow-y-scroll p-4"
+          className="h-[calc(100vh-4.5rem)] w-full overflow-x-hidden overflow-y-scroll p-2 md:p-4"
         >
           <Outlet />
         </div>
