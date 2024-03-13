@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Icon from "./icon";
 
-export default function SearchBar({ className }) {
+export default function SearchBar() {
   const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export default function SearchBar({ className }) {
   };
 
   return (
-    <form className={`ml-14 w-[500px]`}>
+    <form className={`ml-10 w-[500px] md:ml-14`}>
       <div className="relative flex items-center">
         <input
           type="search"
