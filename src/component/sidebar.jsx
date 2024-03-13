@@ -1,9 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useClickOutside } from "../services/utilities";
 import Icon from "./icon";
 
-export default function Sidebar({ isOpen, setIsOpen }) {
+export default function Sidebar({ isOpen }) {
   const sidebarRef = useRef(null);
 
   const data = [
@@ -28,10 +27,6 @@ export default function Sidebar({ isOpen, setIsOpen }) {
       link: "/AnimeIn/date",
     },
   ];
-
-  useEffect(() => {
-    useClickOutside(sidebarRef, setIsOpen);
-  }, []);
 
   return (
     <aside
