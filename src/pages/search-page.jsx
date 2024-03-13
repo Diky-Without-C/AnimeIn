@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getAnimeData, removeDuplicates } from "../services/api";
 import ListAnime from "../component/list-anime";
 import Pagination from "../component/pagination";
+import Title from "../component/title";
 
 export default function SearchPage() {
   const [anime, setAnime] = useState([]);
@@ -33,24 +34,18 @@ export default function SearchPage() {
   }, [query]);
 
   return (
-    <>
+    <div ref={contentRef}>
       {anime?.pagination?.items.count == 0 ? (
-        <>
-          <h4 className="mb-4 mt-2 text-2xl font-bold tracking-tight">
-            {`No match for ${query} ...`}
-          </h4>
-        </>
+        <Title text={`No match for ${query} ...`}></Title>
       ) : (
         <>
-          <h4 className="mb-4 mt-2 text-2xl font-bold tracking-tight">
-            {`Search for ${query} ...`}
-          </h4>
+          <Title text={`Search for ${query} ...`}></Title>
           <ListAnime {...{ anime, isLoading }} />
           <div className="flex justify-center">
             <Pagination {...{ lastpage, setpage, page, contentRef }} />
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
