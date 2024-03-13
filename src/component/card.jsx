@@ -12,7 +12,7 @@ export default function Card({ anime, placeholder, complete }) {
     >
       <div
         className={`mx-auto flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white shadow-sm shadow-black 
-        ${complete ? "h-48 sm:h-76 md:h-88 lg:h-96 xl:h-112" : "h-36 sm:h-52 md:h-64 lg:h-76 xl:h-88"}`}
+        ${complete ? "h-96 sm:h-76 md:h-88 lg:h-96 xl:h-112" : "h-64 sm:h-52 md:h-64 lg:h-76 xl:h-88"}`}
       >
         <div
           className={`relative flex w-full items-center justify-center overflow-hidden rounded-t-lg
@@ -52,7 +52,7 @@ function Title({ anime, placeholder }) {
     <div className="h-2/6 rounded bg-gray-300"></div>
   ) : (
     <div className="flex h-2/6 items-center">
-      <h5 className="truncate text-[0.6rem] font-bold tracking-tight sm:text-sm md:text-base lg:text-lg">
+      <h5 className="truncate text-base font-bold tracking-tight sm:text-sm md:text-base lg:text-lg">
         {anime.title}
       </h5>
     </div>
@@ -69,7 +69,7 @@ function RattingSection({ anime, placeholder }) {
       <div className="flex h-full">
         {stars.map((star, index) => {
           return (
-            <span key={index} className="-mr-1 pt-1">
+            <span key={index} className="-mr-1 pt-0.5 sm:pt-1">
               {star % 1 == 0 ? (
                 <Icon name="star" color="star" size="medium" fill={star != 0} />
               ) : (
@@ -79,7 +79,7 @@ function RattingSection({ anime, placeholder }) {
           );
         })}
       </div>
-      <p className="whitespace-nowrap text-[0.4rem] font-medium text-gray-700 sm:text-xs lg:text-sm xl:text-base">
+      <p className="whitespace-nowrap text-xs font-medium text-gray-700 sm:text-[0.6rem] lg:text-sm xl:text-base">
         {anime.score
           ? `(${addComas(anime.scored_by)} review)`
           : "Not rated yet"}
@@ -97,7 +97,7 @@ function GenresSection({ anime, placeholder }) {
       <span className="placeholder h-1/3 w-2/5 rounded bg-gray-300"></span>
     </div>
   ) : (
-    <div className="h-2/5 overflow-hidden text-[0.35rem] sm:text-[0.7rem] md:text-xs xl:text-sm">
+    <div className="h-2/5 overflow-hidden text-[0.7rem] sm:text-[0.5rem] md:text-xs xl:text-sm">
       <p className="break-words">
         {genres.map((genre) => genre.name).join(", ")}
       </p>
@@ -109,7 +109,7 @@ function ViewSection({ anime, placeholder }) {
   return placeholder ? (
     <div className="placeholder flex h-2/6 justify-around rounded-lg bg-gray-300"></div>
   ) : (
-    <div className="flex h-2/6 justify-around rounded-lg bg-gray-800 text-[0.45rem] text-white sm:text-xs md:text-sm xl:text-base">
+    <div className="flex h-2/6 justify-around rounded-lg bg-gray-800 text-sm text-white sm:text-xs md:text-sm xl:text-base">
       <div className="flex flex-col items-center">
         <span>{addComas(anime.members)}</span>
         <span>View</span>
