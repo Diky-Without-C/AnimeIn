@@ -1,7 +1,11 @@
+import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useClickOutside } from "../services/utilities";
 import Icon from "./icon";
 
 export default function Sidebar({ isOpen, setIsOpen }) {
+  const sidebarRef = useRef(null);
+
   const data = [
     {
       name: "Home",
@@ -25,11 +29,16 @@ export default function Sidebar({ isOpen, setIsOpen }) {
     },
   ];
 
+  useEffect(() => {
+    useClickOutside(sidebarRef, setIsOpen);
+  }, []);
+
   return (
     <aside
       className={`absolute z-10 flex h-[calc(100vh-4.5rem)] flex-col space-y-2 overflow-hidden border-r-2 border-gray-200 bg-white transition-all duration-500 lg:relative ${
         isOpen ? "w-72" : "w-72 -translate-x-full md:w-24 lg:translate-x-0"
       }`}
+      ref={sidebarRef}
     >
       <div className="w-full border-b-2 p-2">
         <NavList items={data} isVisible={isOpen} />

@@ -48,9 +48,11 @@ export function useClickOutside(ref, setClickOtside) {
     }
   };
 
-  document.addEventListener("mousedown", handleClickOutside);
+  const target = document.getElementById("main-content");
+
+  target.addEventListener("mousedown", handleClickOutside);
   return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
+    target.removeEventListener("mousedown", handleClickOutside);
   };
 }
 

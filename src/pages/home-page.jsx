@@ -21,7 +21,7 @@ export default function HomePage() {
     });
 
     const data = await getNestedData({
-      data: anime.data,
+      data: anime?.data || [],
       property: "entry",
     });
 
