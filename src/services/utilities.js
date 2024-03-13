@@ -48,12 +48,7 @@ export function useClickOutside(ref, setClickOtside) {
     }
   };
 
-  const target = document.getElementById("main-content");
-
-  target.addEventListener("mousedown", handleClickOutside);
-  return () => {
-    target.removeEventListener("mousedown", handleClickOutside);
-  };
+  document.addEventListener("click", handleClickOutside);
 }
 
 export function ratingToStar(number) {
