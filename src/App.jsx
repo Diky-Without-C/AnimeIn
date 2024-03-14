@@ -17,10 +17,13 @@ export default function App() {
         <Sidebar {...{ isOpen }} />
         <div
           onClick={closeSidebar}
-          id="main-content"
-          className="h-[calc(100vh-4.5rem)] w-full overflow-x-hidden overflow-y-scroll p-2 md:p-4"
+          className="h-[calc(100vh-4.5rem)] w-full overflow-x-hidden overflow-y-scroll"
         >
-          <Outlet />
+          <div
+            className={`h-full w-full p-2 md:p-4 lg:pointer-events-auto ${isOpen && "pointer-events-none"}`}
+          >
+            <Outlet />
+          </div>
         </div>
       </div>
     </main>
