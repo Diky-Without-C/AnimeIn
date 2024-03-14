@@ -22,6 +22,12 @@ export function capitalize(string) {
   return string && string[0].toUpperCase() + string.slice(1);
 }
 
+export function snakeCase(string) {
+  const words = string.split(" ");
+  const result = words.map((word) => capitalize(word));
+  return result.join("_");
+}
+
 export function useScrollTop(contentRef) {
   function scrollTop() {
     if (contentRef.current) {
