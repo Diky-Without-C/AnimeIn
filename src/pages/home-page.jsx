@@ -4,7 +4,6 @@ import { randomize, removeDuplicates } from "../services/api";
 import { getCurrentTime } from "../services/utilities";
 import ListAnime from "../component/list-anime";
 import Title from "../component/title";
-import Carousel from "../component/carousel";
 
 export default function HomePage() {
   const [anime, setAnime] = useState([]);
@@ -14,7 +13,7 @@ export default function HomePage() {
   const getData = async () => {
     setLoading(true);
     const anime = await getAnimeData({
-      endpoints: "recommendations/anime",
+      endpoints: "anime/52991/recommendations",
     });
 
     const data = await getNestedData({
@@ -23,8 +22,9 @@ export default function HomePage() {
     });
 
     randomize(data);
+    removeDuplicates(data);
 
-    setAnime(removeDuplicates(data).slice(0, 20));
+    setAnime(data.slice(0, 20));
     setLoading(false);
   };
 
@@ -35,7 +35,6 @@ export default function HomePage() {
 
   return (
     <>
-      <Carousel {...{ placeholder }} />
       <header className="mb-2 h-24 w-full">
         <h1 className="mb-5 text-center text-4xl font-bold">
           Good {currentTime}, Wellcome Back

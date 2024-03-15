@@ -15,7 +15,7 @@ export async function getAnimeData({ endpoints, query }) {
 
 export async function getNestedData({ data, property }) {
   const result = await data.flatMap((data) => data[property]);
-  return result;
+  return result.filter((anime) => anime.mal_id > 3000);
 }
 
 export function removeDuplicates(data = []) {
