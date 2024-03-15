@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import {
-  getAnimeData,
-  getNestedData,
-  randomize,
-  removeDuplicates,
-} from "../services/api";
+import { getAnimeData, getNestedData } from "../services/api";
+import { randomize, removeDuplicates } from "../services/api";
 import { getCurrentTime } from "../services/utilities";
 import ListAnime from "../component/list-anime";
 import Title from "../component/title";
+import Carousel from "../component/carousel";
 
 export default function HomePage() {
   const [anime, setAnime] = useState([]);
@@ -38,6 +35,7 @@ export default function HomePage() {
 
   return (
     <>
+      <Carousel {...{ placeholder }} />
       <header className="mb-2 h-24 w-full">
         <h1 className="mb-5 text-center text-4xl font-bold">
           Good {currentTime}, Wellcome Back
