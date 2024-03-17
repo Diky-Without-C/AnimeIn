@@ -14,7 +14,33 @@ export default function PopularPage() {
 
   const dropdownMenu = [
     {
-      title: "Comming Soon",
+      title: "type",
+      subList: [
+        {
+          title: "tv",
+          checked: true,
+        },
+        {
+          title: "movie",
+          checked: false,
+        },
+        {
+          title: "ova",
+          checked: false,
+        },
+        {
+          title: "ona",
+          checked: false,
+        },
+        {
+          title: "special",
+          checked: false,
+        },
+      ],
+    },
+    {
+      title: "allow hentai",
+      checked: false,
     },
   ];
 

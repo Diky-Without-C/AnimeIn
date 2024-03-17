@@ -50,6 +50,7 @@ export default function Icon({
       star: "text-star",
     },
     sizes: {
+      small: "size-4",
       medium: "size-4 sm:size-3 md:size-4 lg:size-4 xl:size-5",
       normal: "size-6",
     },
