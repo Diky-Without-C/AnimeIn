@@ -65,31 +65,34 @@ function DropdownMenu({ items }) {
 }
 
 function DropdownSubMenu({ sub_items }) {
-  const [isChecked, setIsChecked] = useState(null);
+  const [menuItems, setMenuItems] = useState(sub_items);
 
-  function handleChecked(index) {
-    const array = Array(sub_items.length)
-      .fill(null)
-      .map((_, i) => index == i);
-
-    array.forEach((element, i) => {
-      sub_items[i].checked = element;
+  function handleCheckbox(index) {
+    const newMenu = [...menuItems];
+    newMenu.forEach((item, i) => {
+      const isSelected = i == index;
+      if (isSelected) {
+        item.action();
+      }
+      item.checked = isSelected;
     });
-
-    setIsChecked(array.indexOf(true));
+    setMenuItems(newMenu);
   }
 
   return (
     <ul className="py-2 pl-8">
-      {sub_items.map((item, index) => {
+      {menuItems.map((item, index) => {
         return (
-          <li key={index} className="mb-1 flex flex-col">
+          <li
+            key={index}
+            className="mb-1 flex flex-col hover:scale-105 hover:font-medium"
+          >
             <div className="flex items-center">
               <input
                 type="checkbox"
                 name={`dropdown`}
                 checked={item.checked}
-                onChange={() => handleChecked(index)}
+                onChange={() => handleCheckbox(index)}
                 className="mr-2 size-4"
               />
               <span>{item.title}</span>

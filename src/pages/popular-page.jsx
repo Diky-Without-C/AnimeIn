@@ -12,6 +12,8 @@ export default function PopularPage() {
   const [isLoading, setLoading] = useState(false);
   const contentRef = useRef(null);
 
+  const [type, setType] = useState("tv");
+
   const dropdownMenu = [
     {
       title: "type",
@@ -19,27 +21,32 @@ export default function PopularPage() {
         {
           title: "tv",
           checked: true,
+          action: () => setType("tv"),
         },
         {
           title: "movie",
           checked: false,
+          action: () => setType("movie"),
         },
         {
           title: "ova",
           checked: false,
+          action: () => setType("ova"),
         },
         {
           title: "ona",
           checked: false,
+          action: () => setType("ona"),
         },
         {
           title: "special",
           checked: false,
+          action: () => setType("special"),
         },
       ],
     },
     {
-      title: "allow hentai",
+      title: "allow sfw",
       checked: false,
     },
   ];
@@ -48,7 +55,7 @@ export default function PopularPage() {
     setLoading(true);
     const anime = await getAnimeData({
       endpoints: "top/anime",
-      query: `page=${page}&limit=20&type=tv`,
+      query: `page=${page}&limit=20&type=${type}`,
     });
 
     setAnime(removeDuplicates(anime?.data));
@@ -58,7 +65,7 @@ export default function PopularPage() {
 
   useEffect(() => {
     getData();
-  }, [page]);
+  }, [page, type]);
 
   return (
     <div ref={contentRef}>
