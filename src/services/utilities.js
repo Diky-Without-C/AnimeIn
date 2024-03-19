@@ -26,7 +26,7 @@ export function useScrollTop(contentRef) {
   function scrollTop() {
     if (contentRef.current) {
       if (contentRef.current.parentElement) {
-        contentRef.current.parentElement.scrollTo({
+        contentRef.current.parentElement.parentElement.scrollTo({
           top: 0,
           behavior: "smooth",
         });
