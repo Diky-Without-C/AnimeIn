@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { getAnimeData, removeDuplicates } from "../services/api";
-import { capitalize } from "../services/utilities";
+import { capitalize, useScrollTop } from "../services/utilities";
 import ListAnime from "../component/list-anime";
 import Pagination from "../component/pagination";
 import Dropdown from "../component/dropdown";
@@ -14,6 +14,7 @@ export default function SeasonPage() {
   const currentSeason = anime?.[0]?.season || "Anime";
   const currentYear = new Date().getFullYear();
   const contentRef = useRef(null);
+  const scrollTop = useScrollTop(contentRef);
 
   const dropdownMenu = [
     {
@@ -35,6 +36,7 @@ export default function SeasonPage() {
 
   useEffect(() => {
     getData();
+    scrollTop();
   }, [page]);
 
   return (
@@ -44,7 +46,7 @@ export default function SeasonPage() {
       </Title>
       <ListAnime {...{ anime, isLoading }} />
       <div className="flex justify-center">
-        <Pagination {...{ lastpage, setpage, page, contentRef }} />
+        <Pagination {...{ lastpage, setpage, page }} />
       </div>
     </div>
   );

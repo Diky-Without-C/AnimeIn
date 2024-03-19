@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getAnimeData, removeDuplicates } from "../services/api";
+import { useScrollTop } from "../services/utilities";
 import ListAnime from "../component/list-anime";
 import Pagination from "../component/pagination";
 import Title from "../component/title";
@@ -12,6 +13,7 @@ export default function SearchPage() {
   const [isLoading, setLoading] = useState(false);
   const { query } = useParams();
   const contentRef = useRef(null);
+  const scrollTop = useScrollTop(contentRef);
 
   const getData = async () => {
     setLoading(true);
@@ -31,6 +33,7 @@ export default function SearchPage() {
 
   useEffect(() => {
     setpage(1);
+    scrollTop();
   }, [query]);
 
   return (
@@ -42,7 +45,7 @@ export default function SearchPage() {
           <Title text={`Search for ${query} ...`}></Title>
           <ListAnime {...{ anime, isLoading }} />
           <div className="flex justify-center">
-            <Pagination {...{ lastpage, setpage, page, contentRef }} />
+            <Pagination {...{ lastpage, setpage, page }} />
           </div>
         </>
       )}

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { getAnimeData, removeDuplicates } from "../services/api";
+import { useScrollTop } from "../services/utilities";
 import ListAnime from "../component/list-anime";
 import Pagination from "../component/pagination";
 import Dropdown from "../component/dropdown";
@@ -11,6 +12,7 @@ export default function PopularPage() {
   const [lastpage, setlastpage] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const contentRef = useRef(null);
+  const scrollTop = useScrollTop(contentRef);
 
   const [type, setType] = useState("tv");
 
@@ -65,6 +67,7 @@ export default function PopularPage() {
 
   useEffect(() => {
     getData();
+    scrollTop();
   }, [page, type]);
 
   return (
@@ -74,7 +77,7 @@ export default function PopularPage() {
       </Title>
       <ListAnime {...{ anime, isLoading }} />
       <div className="flex justify-center">
-        <Pagination {...{ lastpage, setpage, page, contentRef }} />
+        <Pagination {...{ lastpage, setpage, page }} />
       </div>
     </div>
   );

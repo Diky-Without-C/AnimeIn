@@ -1,28 +1,19 @@
-import { useEffect } from "react";
-import { useScrollTop } from "../services/utilities";
 import Icon from "./icon";
 
-export default function Pagination({ lastpage, setpage, page, contentRef }) {
+export default function Pagination({ lastpage, setpage, page }) {
   const placeholder = !lastpage;
-  const scrollTop = useScrollTop(contentRef);
 
   function prevButton() {
     if (page > 1) {
       setpage((prev) => prev - 1);
-      scrollTop();
     }
   }
 
   function nextButton() {
     if (page < lastpage) {
       setpage((prev) => prev + 1);
-      scrollTop();
     }
   }
-
-  useEffect(() => {
-    scrollTop();
-  }, []);
 
   return (
     <div className="flex h-10 items-center gap-4">
